@@ -37,7 +37,7 @@ export default function PostCard({ post }) {
 
     try {
       await axios.post(
-        `http://localhost:3000/post/${post._id}/like`,
+        `${import.meta.env.VITE_API_URL}/post/${post._id}/like`,
         {},
         {
           headers: {
@@ -65,7 +65,7 @@ export default function PostCard({ post }) {
 
     try {
       await axios.post(
-        `http://localhost:3000/post/${post._id}/comment`,
+        `${import.meta.env.VITE_API_URL}/post/${post._id}/comment`,
         { text: commentText },
         {
           headers: {

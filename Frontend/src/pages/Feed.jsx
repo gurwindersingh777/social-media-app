@@ -16,9 +16,8 @@ export default function Feed() {
 
   const fetchPosts = async () => {
   try {
-    // Corrected endpoint to match your updated backend path "/post"
-    const res = await axios.get("http://localhost:3000/post"); 
-    setPosts(res.data.posts); // Make sure it reads .posts
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/post`);
+    setPosts(res.data.posts); 
   } catch (error) {
     console.error("Failed to fetch posts");
   } finally {
@@ -26,7 +25,6 @@ export default function Feed() {
   }
 };
 
-  // Instantly updates the UI when a new post is created
   const handleNewPost = (newPost) => {
     setPosts([newPost, ...posts]);
   };
@@ -37,7 +35,7 @@ export default function Feed() {
       <AppBar position="sticky" elevation={1}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: "bold" }}>
-            Scocial Media App
+            Social Media App
           </Typography>
           <Typography variant="body2" sx={{ mr: 2, display: { xs: 'none', sm: 'block' } }}>
              {user?.username}

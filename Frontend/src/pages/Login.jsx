@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault()
 
     try {
-      const res = await axios.post("http://localhost:3000/auth/login", {email,password})
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, {email,password})
       login(res.data.token, res.data.user)
       navigate("/")
     } catch (error) {

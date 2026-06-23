@@ -30,7 +30,7 @@ export default function CreatePost({ onPostCreated }) {
     const formData = new FormData(formRef.current);
 
     try {
-      const response = await fetch("http://localhost:3000/post", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/post`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}` 
