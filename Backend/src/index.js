@@ -2,6 +2,7 @@ import "dotenv/config"
 import express from "express"
 import { connectDB } from "./config/db.js"
 import cors from "cors"
+import authRouter from "./routes/auth.route.js"
 
 const app = express()
 
@@ -15,6 +16,8 @@ app.use(cors({
 app.get('/health', (req, res) => {
   return res.status(200).json({ success: true, message: "OK" })
 })
+
+app.use("/auth", authRouter)
 
 const PORT = process.env.PORT || 3000
 
