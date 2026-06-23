@@ -1,26 +1,31 @@
 import { PostModel } from "../models/post.model.js";
 
 // create a new post
-export async function createPost(req, res) {
+export const createPost = async (req, res) => {
   try {
-    const { textContent, imageUrl } = req.body
+    // ADD THESE TWO LINES:
+    console.log("Incoming Body:", req.body);
+    console.log("Incoming File:", req.file);
+
+    const { textContent } = req.body;
+    const imageUrl = req.file ? req.file.path : ""; 
 
     if (!textContent && !imageUrl) {
-      return res.status(400).json({ success: false, message: "Post must contain text or an image" })
+      return res.status(400).json({ message: "Post cannot be empty" });
     }
 
-    const newPost = await PostModel.create({
+    const newPost = new PostModel({
       author: req.user.username,
       textContent,
-      imageUrl
-    })
+      imageUrl,
+    });
 
-    return res.status(201).json({ success: true, post: newPost, message: "Post created successfully" })
-
+    await newPost.save();
+    return res.status(201).json({ success: true, post: newPost });
   } catch (error) {
-    return res.status(500).json({ success: false, message: "Server Error" });
+    return res.status(500).json({ success: false, message: "Server error" });
   }
-}
+};
 
 // get all posts
 export async function getPosts(req, res) {
