@@ -3,6 +3,7 @@ import express from "express"
 import { connectDB } from "./config/db.js"
 import cors from "cors"
 import authRouter from "./routes/auth.route.js"
+import postRouter from "./routes/post.route.js"
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.get('/health', (req, res) => {
 })
 
 app.use("/auth", authRouter)
+app.use("/post", postRouter)
 
 const PORT = process.env.PORT || 3000
 
