@@ -31,7 +31,7 @@ A full-stack social media app where users can sign up, log in, and share posts w
 
 **1. Clone the repo**
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/gurwindersingh777/social-media-app
 ```
 
 **2. Install dependencies**
